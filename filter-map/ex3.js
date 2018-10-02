@@ -51,14 +51,15 @@ Sortie attendue:
 */
 
 const getStudentsPerCurriculum = (campuses, curriculumName) => campuses.filter(campus => {
-  isTeach = false;
   for (let i = 0; i< campus.curriculums.length; i++ ){
-    if (campus.curriculums.name == curriculumName){
-      isTeach = true;
+    if (campus.curriculums[i].name.includes(curriculumName)) {
+      return [campus, i];
     }
   }
-  return isTeach;
+}).map(campus => {
+  return {
+    [campus.city] : campus.curriculums[0].numStudents 
+  }
 })
-
 
 module.exports = getStudentsPerCurriculum;

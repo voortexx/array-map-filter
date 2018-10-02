@@ -63,9 +63,16 @@ En prenant les deux exemples d'arguments d'entrée, on obtiendrait ceci en sorti
 
 */
 
-function getActivitiesMembers(activities, persons) {
+const getActivitiesMembers = (activities, persons) => {
+  let treatment = activities.map(oneActivity => {
+    return {
+      activity: oneActivity,
+      persons: persons.filter(person => person.activities.includes(oneActivity)).map(person => person.name)
+    }
+  }
+)
+return treatment;
 }
-
 
 
 // Ne pas modifier l'export
